@@ -3,41 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>My First Website</title>
 
   <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
+    }
 
-  background: #111;
-  background-image: url("manusferabg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-  color: white;
-  text-align: center;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("manusferabg.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+
+      opacity: 0;
+      transform: scale(1.08);
+      filter: blur(8px);
+      animation: backgroundReveal 1.4s ease-out forwards;
+    }
+
+    @keyframes backgroundReveal {
+      from {
+        opacity: 0;
+        transform: scale(1.08);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: min(29ch, 90vw);
+      }
+    }
+
+    @keyframes blinkCursor {
+      0%, 100% {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: white;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-}
-    h1 {
-  font-size: clamp(32px, 5vw, 64px);
-  margin-bottom: 10px;
-}
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
 
-p {
-  font-size: clamp(16px, 2vw, 22px);
-  max-width: 600px;
-  line-height: 1.5;
-}
+    h1 {
+      font-size: clamp(32px, 5vw, 64px);
+      margin-bottom: 10px;
+
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      border-right: 4px solid white;
+
+      animation:
+        typing 2.2s steps(29) 0.8s forwards,
+        blinkCursor 0.7s step-end infinite;
+    }
+
+    p {
+      font-size: clamp(16px, 2vw, 22px);
+      max-width: 600px;
+      line-height: 1.5;
+
+      opacity: 0;
+      animation: fadeUp 0.9s ease-out forwards;
+      animation-delay: 3s;
+    }
 
     a {
       margin-top: 25px;
@@ -48,6 +126,16 @@ p {
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+
+      opacity: 0;
+      animation: fadeUp 0.9s ease-out forwards;
+      animation-delay: 3.25s;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    a:hover {
+      transform: translateY(-4px) scale(1.04);
+      background: #e8e8e8;
     }
   </style>
 </head>
