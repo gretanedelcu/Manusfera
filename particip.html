@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Particip</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+
+      background-color: #111;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url("images/particip-background.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      min-height: 100vh;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 60px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      margin-bottom: 15px;
+    }
+
+    .intro {
+      font-size: clamp(16px, 2vw, 22px);
+      max-width: 700px;
+      line-height: 1.5;
+      margin-bottom: 50px;
+    }
+
+    .profiles {
+      width: 100%;
+      max-width: 1000px;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+    }
+
+    .profile-card {
+      background: rgba(0, 0, 0, 0.45);
+      padding: 24px;
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .profile-card img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      border: 3px solid white;
+    }
+
+    .profile-card h2 {
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+
+    .profile-card p {
+      font-size: 16px;
+      margin: 0;
+      opacity: 0.85;
+      line-height: 1.4;
+    }
+
+    .back-button {
+      margin-top: 50px;
+      display: inline-block;
+      padding: 14px 24px;
+      background: white;
+      color: #111;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <h1>Participanți</h1>
+
+    <p class="intro">
+      Aici poți pune lista participanților, fiecare cu poză, titlu și subtitlu.
+    </p>
+
+    <section class="profiles">
+
+      <div class="profile-card">
+        <img src="images/profile1.png" alt="Profile 1">
+        <h2>Nume participant 1</h2>
+        <p>Subtitlu participant 1</p>
+      </div>
+
+      <div class="profile-card">
+        <img src="images/profile2.png" alt="Profile 2">
+        <h2>Nume participant 2</h2>
+        <p>Subtitlu participant 2</p>
+      </div>
+
+      <div class="profile-card">
+        <img src="images/profile3.png" alt="Profile 3">
+        <h2>Nume participant 3</h2>
+        <p>Subtitlu participant 3</p>
+      </div>
+
+    </section>
+
+    <a class="back-button" href="index.html">Înapoi</a>
+  </main>
+</body>
+</html>
