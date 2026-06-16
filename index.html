@@ -4,17 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MANUSFERA</title>
-<meta property="og:title" content="Manusfera - Începe schimbarea pe 1 iulie" />
-<meta property="og:description" content="Manu-alul dezvoltării începe cu tine. Alătură-te mișcării." />
-<meta property="og:image" content="https://gretanedelcu.github.io/Manusfera/dansa cuduro.png" />
-<meta property="og:url" content="https://gretanedelcu.github.io/Manusfera/" />
-<meta property="og:type" content="website" />
+  <title>My First Website</title>
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Manusfera - Începe schimbarea pe 1 iulie" />
-<meta name="twitter:description" content="Manu-alul dezvoltării începe cu tine. Alătură-te mișcării." />
-<meta name="twitter:image" content="https://gretanedelcu.github.io/Manusfera/dansa cuduro.png" />
   <style>
     * {
       box-sizing: border-box;
@@ -126,6 +117,77 @@
       animation-delay: 3s;
     }
 
+    .countdown-box {
+      margin-top: 30px;
+      padding: 22px 28px;
+      width: min(720px, 100%);
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+
+      opacity: 0;
+      animation: fadeUp 0.9s ease-out forwards;
+      animation-delay: 3.15s;
+    }
+
+    .countdown-title {
+      margin: 0 0 18px;
+      font-size: clamp(18px, 2.3vw, 26px);
+      font-weight: bold;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .time-card {
+      padding: 14px 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+    }
+
+    .time-card span {
+      display: block;
+      font-size: clamp(26px, 5vw, 48px);
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .time-card small {
+      display: block;
+      margin-top: 7px;
+      color: #cfcfcf;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .progress-wrap {
+      margin-top: 20px;
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: white;
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+
+    .progress-text {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #cfcfcf;
+      font-style: italic;
+    }
+
     a {
       margin-top: 25px;
       display: inline-block;
@@ -138,7 +200,7 @@
 
       opacity: 0;
       animation: fadeUp 0.9s ease-out forwards;
-      animation-delay: 3.25s;
+      animation-delay: 3.35s;
       transition: transform 0.25s ease, background 0.25s ease;
     }
 
@@ -146,14 +208,126 @@
       transform: translateY(-4px) scale(1.04);
       background: #e8e8e8;
     }
+
+    @media (max-width: 520px) {
+      h1 {
+        white-space: normal;
+        border-right: none;
+        width: auto;
+        animation: fadeUp 0.9s ease-out forwards;
+        animation-delay: 0.8s;
+        opacity: 0;
+      }
+
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 
 <body>
   <section class="hero">
     <h1>Incepe schimbarea pe 1 iulie.</h1>
+
     <p>Manu-alul dezvoltării începe cu tine.</p>
-    <a href="particip.html">Vezi lista de pariticpanti</a>
+
+    <div class="countdown-box">
+      <div class="countdown-title">Timp rămas până pe 1 iulie, ora 00:00</div>
+
+      <div class="countdown">
+        <div class="time-card">
+          <span id="days">00</span>
+          <small>Zile</small>
+        </div>
+
+        <div class="time-card">
+          <span id="hours">00</span>
+          <small>Ore</small>
+        </div>
+
+        <div class="time-card">
+          <span id="minutes">00</span>
+          <small>Minute</small>
+        </div>
+
+        <div class="time-card">
+          <span id="seconds">00</span>
+          <small>Secunde</small>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="progress-text" id="progressText">
+        Countdown pornit de astăzi, ora 00:00.
+      </div>
+    </div>
+
+    <a href="particip.html">Particip</a>
   </section>
+
+  <script>
+    const nowAtLoad = new Date();
+
+    const startDate = new Date(
+      nowAtLoad.getFullYear(),
+      nowAtLoad.getMonth(),
+      nowAtLoad.getDate(),
+      0,
+      0,
+      0
+    );
+
+    let targetDate = new Date(nowAtLoad.getFullYear(), 6, 1, 0, 0, 0);
+
+    if (nowAtLoad > targetDate) {
+      targetDate = new Date(nowAtLoad.getFullYear() + 1, 6, 1, 0, 0, 0);
+    }
+
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    function updateCountdown() {
+      const now = new Date();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        daysElement.textContent = "00";
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
+        progressBar.style.width = "100%";
+        progressText.textContent = "Schimbarea a început.";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      daysElement.textContent = String(days).padStart(2, "0");
+      hoursElement.textContent = String(hours).padStart(2, "0");
+      minutesElement.textContent = String(minutes).padStart(2, "0");
+      secondsElement.textContent = String(seconds).padStart(2, "0");
+
+      const totalTime = targetDate - startDate;
+      const elapsedTime = now - startDate;
+      const progress = Math.min(Math.max((elapsedTime / totalTime) * 100, 0), 100);
+
+      progressBar.style.width = progress + "%";
+      progressText.textContent = `Countdown pornit de astăzi, ora 00:00 — ${progress.toFixed(1)}% parcurs.`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
