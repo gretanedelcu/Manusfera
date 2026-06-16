@@ -34,9 +34,36 @@
       align-items: center;
     }
 
+    @keyframes revealCard {
+      from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.92);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes revealText {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     h1 {
       font-size: clamp(36px, 6vw, 72px);
       margin-bottom: 15px;
+      animation: revealText 0.8s ease-out both;
     }
 
     .intro {
@@ -60,6 +87,40 @@
       padding: 24px;
       border-radius: 18px;
       backdrop-filter: blur(6px);
+
+      opacity: 0;
+      animation: revealCard 0.75s ease-out both;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      background: rgba(0, 0, 0, 0.62);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
+    }
+
+    .profiles .profile-card:nth-child(1) {
+      animation-delay: 0.15s;
+    }
+
+    .profiles .profile-card:nth-child(2) {
+      animation-delay: 0.30s;
+    }
+
+    .profiles .profile-card:nth-child(3) {
+      animation-delay: 0.45s;
+    }
+
+    .profiles .profile-card:nth-child(4) {
+      animation-delay: 0.60s;
+    }
+
+    .profiles .profile-card:nth-child(5) {
+      animation-delay: 0.75s;
+    }
+
+    .profiles .profile-card:nth-child(6) {
+      animation-delay: 0.90s;
     }
 
     .profile-card img {
@@ -76,39 +137,50 @@
       margin: 0 0 8px;
     }
 
-.profile-card p {
-  font-size: 16px;
-  margin: 0;
-  color: #b8b8b8;
-  font-style: italic;
-  line-height: 1.4;
-}
-.join-line {
-  margin-top: 35px;
-  margin-bottom: 40px;
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: bold;
-  color: white;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
-}
+    .profile-card p {
+      font-size: 16px;
+      margin: 0;
+      color: #b8b8b8;
+      font-style: italic;
+      line-height: 1.4;
+    }
 
-.special-section {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .join-line {
+      margin-top: 35px;
+      margin-bottom: 40px;
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
 
-.special-title {
-  font-size: clamp(24px, 4vw, 42px);
-  margin-bottom: 25px;
-  font-weight: bold;
-}
+      opacity: 0;
+      animation: revealText 0.8s ease-out both;
+      animation-delay: 1.05s;
+    }
 
-.special-profile {
-  max-width: 300px;
-  width: 100%;
-}
+    .special-section {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .special-title {
+      font-size: clamp(24px, 4vw, 42px);
+      margin-bottom: 25px;
+      font-weight: bold;
+
+      opacity: 0;
+      animation: revealText 0.8s ease-out both;
+      animation-delay: 1.20s;
+    }
+
+    .special-profile {
+      max-width: 300px;
+      width: 100%;
+      animation-delay: 1.35s;
+    }
+
     .back-button {
       margin-top: 50px;
       display: inline-block;
@@ -118,6 +190,16 @@
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+
+      opacity: 0;
+      animation: revealText 0.8s ease-out both;
+      animation-delay: 1.55s;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-4px) scale(1.04);
+      background: #e8e8e8;
     }
   </style>
 </head>
@@ -128,50 +210,51 @@
 
     <section class="profiles">
 
-    <div class="profile-card">
-  <img src="Profile 1.png" alt="Profile 1">
-  <h2>MANU(CEO)</h2>
-  <p>Se apuca de sala</p>
-</div>
-
-<div class="profile-card">
-  <img src="Profile 2.png" alt="Profile 2">
-  <h2>GABONE</h2>
-  <p>Renunta la dulciuri si comanda o data pe saptamana.</p>
-</div>
-
-<div class="profile-card">
-  <img src="Profile 3.png" alt="Profile 3">
-  <h2>CLAUDIU</h2>
-  <p>Renunta la dulciuri si comanda o data pe luna.</p>
-</div>
       <div class="profile-card">
-  <img src="Profile 4.png" alt="Profile 4">
-  <h2>GRETA</h2>
-  <p>Renunta la dulciuri si face o tractiune.</p>
-</div>
+        <img src="Profile 1.png" alt="Profile 1">
+        <h2>MANU(CEO)</h2>
+        <p>Se apuca de sala</p>
       </div>
+
       <div class="profile-card">
-  <img src="Profile 5.png" alt="Profile 5">
-  <h2>BENI</h2>
-  <p>Se lasa de fumat</p>
-</div>
+        <img src="Profile 2.png" alt="Profile 2">
+        <h2>GABONE</h2>
+        <p>Renunta la dulciuri si comanda o data pe saptamana.</p>
+      </div>
+
+      <div class="profile-card">
+        <img src="Profile 3.png" alt="Profile 3">
+        <h2>CLAUDIU</h2>
+        <p>Renunta la dulciuri si comanda o data pe luna.</p>
+      </div>
+
+      <div class="profile-card">
+        <img src="Profile 4.png" alt="Profile 4">
+        <h2>GRETA</h2>
+        <p>Renunta la dulciuri si face o tractiune.</p>
+      </div>
+
+      <div class="profile-card">
+        <img src="Profile 5.png" alt="Profile 5">
+        <h2>BENI</h2>
+        <p>Se lasa de fumat</p>
+      </div>
 
     </section>
 
-<p class="join-line">Alătură-te mișcării.</p>
+    <p class="join-line">Alătură-te mișcării.</p>
 
-<section class="special-section">
-  <h2 class="special-title">Mențiune specială</h2>
+    <section class="special-section">
+      <h2 class="special-title">Mențiune specială</h2>
 
-  <div class="profile-card special-profile">
-    <img src="Profile s.png" alt="Profile s">
-    <h2>SILVIU</h2>
-    <p>Vinde Opel-ul.</p>
-  </div>
-</section>
+      <div class="profile-card special-profile">
+        <img src="Profile s.png" alt="Profile s">
+        <h2>SILVIU</h2>
+        <p>Vinde Opel-ul.</p>
+      </div>
+    </section>
 
-<a class="back-button" href="index.html">Înapoi</a>
+    <a class="back-button" href="index.html">Înapoi</a>
   </main>
 </body>
 </html>
