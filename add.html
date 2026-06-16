@@ -155,6 +155,8 @@
 
       <input type="hidden" name="_subject" value="Participant nou - Manusfera">
       <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" id="nextUrl" value="">
+      <input type="hidden" name="_captcha" value="false">
 
       <div class="form-group">
         <label for="email">Emailul tău</label>
@@ -180,8 +182,17 @@
     </form>
 
     <p class="note">
-      Prima trimitere poate cere confirmarea adresei de email. După confirmare, următoarele participări vor ajunge direct pe email.
+      Prima trimitere poate cere confirmarea adresei de email. După confirmare, următoarele participări vor ajunge direct pe email și pagina va reveni automat la lista participanților.
     </p>
   </main>
+
+  <script>
+    const nextUrlInput = document.getElementById("nextUrl");
+
+    const currentPageUrl = window.location.href;
+    const redirectUrl = currentPageUrl.replace("add.html", "particip.html");
+
+    nextUrlInput.value = redirectUrl;
+  </script>
 </body>
 </html>
